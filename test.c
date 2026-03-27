@@ -13,7 +13,6 @@ int add(int x, int y)
 {
     return x + y;
 }
-
 int jie(int x)
 {
     if (x == 1)
@@ -103,8 +102,22 @@ void move_odd_even(int *arr,int sz)
 int main()
 {
 
+//数组指针
+    int arr[]={1,2,3,4,5,6,7,8,9,10};
+    int (*p)[10]=&arr;
+
+    int sz=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<sz;i++)
+    {
+        printf("%d ",*(*p+i));
+    }
+
+
+
+
+
     //指针数组模拟二维数组
-    int arr1[5]={1,2,3,4,5};
+    /* int arr1[5]={1,2,3,4,5};
     int arr2[5]={2,3,4,5,6};
     int arr3[5]={3,4,5,6,7};
 
@@ -119,7 +132,7 @@ int main()
             printf("%d",parr[i][j]);
         }
         printf("\n");
-    }
+    } */
 
 
     //两个有序排列数合并一个有序排列
