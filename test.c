@@ -103,7 +103,27 @@ void move_odd_even(int *arr,int sz)
 int main()
 {
 
-    int n,m;
+    //指针数组模拟二维数组
+    int arr1[5]={1,2,3,4,5};
+    int arr2[5]={2,3,4,5,6};
+    int arr3[5]={3,4,5,6,7};
+
+    int* parr[3]={arr1,arr2,arr3};
+    int i=0;
+    int j=0;
+    for(i=0;i<3;i++)
+    {
+        for(j=0;j<5;j++)
+        {
+
+            printf("%d",parr[i][j]);
+        }
+        printf("\n");
+    }
+
+
+    //两个有序排列数合并一个有序排列
+    /* int n,m;
     scanf("%d %d",&n,&m);
     int narr[n];
     int marr[m];
@@ -144,7 +164,7 @@ int main()
         {
             printf("%d",marr[j]);
         }
-    }
+    } */
      
     /* //一个数组，前半部分是奇数，后半是偶数
     //输入
