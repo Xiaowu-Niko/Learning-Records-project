@@ -97,20 +97,37 @@ void move_odd_even(int *arr,int sz)
     }
 
 }
-
+void print1(int (*p)[5],int r,int c)
+{
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            //printf("%d ",*(*(P+i)+j));
+            printf("%d ",p[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 int main()
 {
 
-//数组指针
-    int arr[]={1,2,3,4,5,6,7,8,9,10};
+
+
+//数组指针的使用
+
+    int arr[3][5]={1,2,3,4,5,2,3,4,5,6,3,4,5,6,7};
+    print1(arr,3,5);
+
+    /* int arr[]={1,2,3,4,5,6,7,8,9,10};
     int (*p)[10]=&arr;
 
     int sz=sizeof(arr)/sizeof(arr[0]);
     for(int i=0;i<sz;i++)
     {
         printf("%d ",*(*p+i)); 
-    }
+    } */
 
 
 
