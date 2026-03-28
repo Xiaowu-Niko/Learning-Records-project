@@ -114,13 +114,12 @@ void print1(int (*p)[5],int r,int c)
 int main()
 {
 
-
-
 //数组指针的使用
 
-    int arr[3][5]={1,2,3,4,5,2,3,4,5,6,3,4,5,6,7};
-    print1(arr,3,5);
-
+    char* arr[5]={0};
+    char* (*p)[5]=&arr; 
+    
+    
     /* int arr[]={1,2,3,4,5,6,7,8,9,10};
     int (*p)[10]=&arr;
 
