@@ -4,7 +4,8 @@
 #include <math.h>
 #include <windows.h>
 struct peo
-{
+{ 
+    
     char name[20];
     char tele[12];
     int high;
