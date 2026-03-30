@@ -10,10 +10,33 @@ struct peo
     char tele[12];
     int high;
 };
-int add(int x, int y)
+//计算器函数
+void calc (int (*p)(int ,int ))
+{   
+    int x,y;
+    printf("输入两个数\n");
+    scanf("%d %d",&x,&y);
+    int ret=p(x,y);
+    printf("%d",ret);
+    //return ret;
+}
+int Add(int x, int y)
 {
     return x + y;
 }
+int Sub(int x,int y)
+{
+    return x-y;
+}
+int Mul(int x ,int y)
+{
+    return x*y;
+}
+int Div(int x,int y)
+{
+    return x/y;
+}
+//阶乘
 int jie(int x)
 {
     if (x == 1)
@@ -110,12 +133,6 @@ void print1(int (*p)[5],int r,int c)
         printf("\n");
     }
 }
-
-int Add(int x,int y)
-{
-    return x+y;
-}
-
 void Add1(int (*p)(int ,int))
 {
     int a=2;
@@ -128,15 +145,60 @@ void Add1(int (*p)(int ,int))
 
 
 
-
-
 int main()
 {
 
-//函数指针的学习
-//函数指针传递，在函数传递函数参数
+
+
+//函数指针的用途
+//计算器
     
-    //printf("%p ",&Add);
+    int x=0;
+    int y=0;
+    int ret=0;
+    int input=0;
+    
+    do
+    {
+        printf("选择计算方式\n加法1,减法2,乘法3,除法4\n");
+        scanf("%d",&input);
+        //ret=add(x,y);
+        
+        switch(input)
+        {
+        case 0:
+            printf("退出游戏\n");
+            break;
+        case 1:
+            calc(Add);
+            break;
+        case 2:
+            calc(Sub);
+            break;
+        case 3:
+            calc(Mul);
+            break;
+        case 4:
+            calc(Div);
+            break;
+        default:
+            printf("输入错误\n");
+            break;
+        }
+
+
+    } while (input);
+    
+    
+
+
+
+
+
+//函数指针的学习
+//函数指针传递，在函数中调用函数
+    
+    /* //printf("%p ",&Add);
     //printf("%p ",Add);
     int (*pf)(int ,int)=Add;
     //printf("%p",*pf);
@@ -144,8 +206,10 @@ int main()
     //int ret=pf(2,3)
     printf("\n");
     //printf("%d",ret);
-    Add1(Add);
-
+    Add1(pf);
+    (*(void(*)())0)();
+    void (*signal(int,void(*)(int)))(int);
+ */
     
 //数组指针的使用,数组参数和指针参数    
     /* int arr[]={1,2,3,4,5,6,7,8,9,10};
