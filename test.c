@@ -166,6 +166,10 @@ int cmp_int(const void* e1,const void* e2)
     return (*(int*) e1) - (*(int*)e2);
 }
 
+int cmp_stu_name(const void* e1,const void* e2)
+{
+    ((struct stu*)e1)->name;
+}
 struct stu
 {
     char name[20];
@@ -176,8 +180,10 @@ struct stu
 int main()
 {
     
-
-
+//测试使用qsort来排序结构体数据
+    struct stu s[]={"zhangsna",25,{"lisi",20},{"wangwu",21}};
+    int sz=sizeof(s)/sizeof(s[0]);
+    qsort(s,sz,sizeof(s[0]),cmp_stu_name);
 
 
 
@@ -185,13 +191,13 @@ int main()
 
 
 //学习qsort 使用快速排序的思想
-    int arr[10]={9,8,7,6,5,4,3,2,1,0};
+/*     int arr[10]={9,8,7,6,5,4,3,2,1,0};
     int sz=sizeof(arr)/sizeof(arr[0]);
     qsort(arr,sz,sizeof(arr[0]),cmp_int);
     for(int i=0;i<sz;i++)
     {
         printf("%d \n",arr[i]);
-    }
+    } */
 
 
 
