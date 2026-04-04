@@ -161,6 +161,12 @@ int Div(int x,int y)
         }
     }
 } */
+struct stu
+{
+    char name[20];
+    int age;
+};
+
 int cmp_int(const void* e1,const void* e2)
 {
     return (*(int*) e1) - (*(int*)e2);
@@ -168,20 +174,20 @@ int cmp_int(const void* e1,const void* e2)
 
 int cmp_stu_name(const void* e1,const void* e2)
 {
-    ((struct stu*)e1)->name;
+    return strcmp(((struct stu*)e1)->name,((struct stu*)e2)->name);
 }
-struct stu
+int cmp_stu_age(const void*e1,const void* e2)
 {
-    char name[20];
-    int age;
-};
+    return ((struct stu*)e1)->age-((struct stu*)e2)->age;
+}
+
 
 
 int main()
 {
     
 //测试使用qsort来排序结构体数据
-    struct stu s[]={"zhangsna",25,{"lisi",20},{"wangwu",21}};
+    struct stu s[]={{"zhangsna",25},{"lisi",20},{"wangwu",21}};
     int sz=sizeof(s)/sizeof(s[0]);
     qsort(s,sz,sizeof(s[0]),cmp_stu_name);
 
