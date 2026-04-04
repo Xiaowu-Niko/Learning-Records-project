@@ -143,7 +143,7 @@ int Div(int x,int y)
 } */
 
 
-/* void bubble_sort(int *arr,int sz)
+/*  void bubble_sort(void *arr,int sz,int wid,int(*cmp)(const void *e1,const void *e2))
 {
     int i=0,j=0;
     int temp=0;
@@ -161,6 +161,7 @@ int Div(int x,int y)
         }
     }
 } */
+
 struct stu
 {
     char name[20];
@@ -178,7 +179,7 @@ int cmp_stu_name(const void* e1,const void* e2)
 }
 int cmp_stu_age(const void*e1,const void* e2)
 {
-    return ((struct stu*)e1)->age-((struct stu*)e2)->age;
+    return (((struct stu*)e1)->age-((struct stu*)e2)->age);
 }
 
 
@@ -187,11 +188,16 @@ int main()
 {
     
 //测试使用qsort来排序结构体数据
-    struct stu s[]={{"zhangsna",25},{"lisi",20},{"wangwu",21}};
+    int arr[10]={0,9,8,7,6,5,4,3,2,1};
+    //int sz=sizeof(arr)/sizeof(arr[0]);
+    struct stu s[]={{"zhangsna",25},{"lisi",21},{"wangwu",29},{"xiaoliu",31}};
     int sz=sizeof(s)/sizeof(s[0]);
-    qsort(s,sz,sizeof(s[0]),cmp_stu_name);
-
-
+    //qsort(arr,sz,sizeof(arr[0]),cmp_int);
+    qsort(s,sz,sizeof(s[0]),cmp_stu_age);
+    for(int i=0;i<sz;i++)
+    {
+        printf("%d ",(s+i)->age);
+    }
 
 
 
