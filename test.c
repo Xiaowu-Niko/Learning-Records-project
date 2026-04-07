@@ -189,10 +189,18 @@ int main()
 {
     
 
-    int (*pf)(int ,int)=Add;
-    //int sum=(*pf)(2,3);
-    int sum=pf(2,3);
-    printf("%d",sum);
+    int a[3][4]={0};
+    printf("%d\n",sizeof(a));
+    printf("%d\n",sizeof(a[0][0]));
+    printf("%d\n",sizeof(a[0]));
+    printf("%d\n",sizeof(a[0]+1));
+    printf("%d\n",sizeof(*(a[0]+1)));
+    printf("%d\n",sizeof(a+1));
+    printf("%d\n",sizeof(*(a+1)));
+    printf("%d\n",sizeof(&a[0]+1));
+    printf("%d\n",sizeof(*(&a[0]+1)));
+    printf("%d\n",sizeof(*a));
+    printf("%d\n",sizeof(a[3]));
 //测试使用qsort来排序结构体数据
 /*     int arr[10]={0,9,8,7,6,5,4,3,2,1};
     //int sz=sizeof(arr)/sizeof(arr[0]);
