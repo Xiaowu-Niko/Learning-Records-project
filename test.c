@@ -189,18 +189,24 @@ int main()
 {
     
 
-    int a[3][4]={0};
-    printf("%d\n",sizeof(a));
-    printf("%d\n",sizeof(a[0][0]));
-    printf("%d\n",sizeof(a[0]));
-    printf("%d\n",sizeof(a[0]+1));
-    printf("%d\n",sizeof(*(a[0]+1)));
-    printf("%d\n",sizeof(a+1));
-    printf("%d\n",sizeof(*(a+1)));
-    printf("%d\n",sizeof(&a[0]+1));
-    printf("%d\n",sizeof(*(&a[0]+1)));
-    printf("%d\n",sizeof(*a));
-    printf("%d\n",sizeof(a[3]));
+
+    int a[3][2]={(0,1),(2,3),(4,5)};
+    int* p;
+    p=a[0];
+    printf("%d",p[0]);
+
+/*     int a[3][4]={0};
+    printf("%d\n",sizeof(a));//48
+    printf("%d\n",sizeof(a[0][0]));//4
+    printf("%d\n",sizeof(a[0]));//16
+    printf("%d\n",sizeof(a[0]+1));//8
+    printf("%d\n",sizeof(*(a[0]+1)));//4
+    printf("%d\n",sizeof(a+1));//8
+    printf("%d\n",sizeof(*(a+1)));//16
+    printf("%d\n",sizeof(&a[0]+1));//8
+    printf("%d\n",sizeof(*(&a[0]+1)));//16
+    printf("%d\n",sizeof(*a));//16
+    printf("%d\n",sizeof(a[3]));//16 */
 //测试使用qsort来排序结构体数据
 /*     int arr[10]={0,9,8,7,6,5,4,3,2,1};
     //int sz=sizeof(arr)/sizeof(arr[0]);
