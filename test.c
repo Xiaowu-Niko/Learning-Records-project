@@ -184,19 +184,47 @@ int cmp_stu_age(const void*e1,const void* e2)
 }
 
 
-
+char* my_strcpy(char *arr1,const char* arr2)
+{
+    assert(arr1 && arr2);
+    char* ret=arr1;
+    while(*arr2)
+    {
+        *arr1++=*arr2++;
+    }
+    return ret;
+}
 int main()
 {
+
+
+
+   
     
+//×Ö·û´®ºÍ×Ö·û´®º¯Êý
+/*     char* arr="abcde";
+    int len =strlen(arr);
+    printf("%d\n",len);
+    char name[]={0};
+    char name1[]={"zhangsan"};
+    my_strcpy(name,name1);
+    printf("%s\n",name); */
+    char arr[]="hello ";
+    char arr2[]={"asdad"};
+    strcat(arr,arr2);
+    printf("%s",arr);
+
+
+
 
 //¸´Ï°ÊÔÌâ
-    char* c[]={"ENTER","NEW","POINT","FIRST"};
+/*     char* c[]={"ENTER","NEW","POINT","FIRST"};
     char** cp[]={c+3,c+2,c+1,c};
     char*** cpp=cp;
     printf("%s\n",**++cpp);
     printf("%s\n",*--*++cpp+3);
     printf("%s\n",*cpp[-2]+3);
-    printf("%s\n",cpp[-1][-1]+1);
+    printf("%s\n",cpp[-1][-1]+1); */
 /*     int a[5][5];
     int (*p)[4];
     p=a;
