@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <math.h>
 #include <windows.h>
+#include <string.h>
 struct peo
 { 
     
@@ -209,10 +210,10 @@ int main()
     char name1[]={"zhangsan"};
     my_strcpy(name,name1);
     printf("%s\n",name); */
-    char arr[]="hello ";
-    char arr2[]={"asdad"};
-    strcat(arr,arr2);
-    printf("%s",arr);
+    char arr1[20]="asas ";
+    char arr2[]="qqqq";
+    strncat(arr1,arr2,4);
+    printf("%s",arr1);
 
 
 
