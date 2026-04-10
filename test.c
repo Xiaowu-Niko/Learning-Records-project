@@ -210,12 +210,19 @@ int main()
     char name1[]={"zhangsan"};
     my_strcpy(name,name1);
     printf("%s\n",name); */
-    char arr1[20]="asas ";
+/*     char arr1[20]="asas ";
     char arr2[]="qqqq";
     strncat(arr1,arr2,4);
-    printf("%s",arr1);
-
-
+    printf("%s",arr1); */
+    char arr1[]="abcdef";
+    char arr2[]="abcd";
+    int len=strncmp(arr1,arr2,5);
+    if(len == 0)
+        printf("==\n");
+    else if(len<0)
+        printf("<\n");
+    else
+        printf(">\n");
 
 
 //∏¥œ∞ ‘Ã‚
