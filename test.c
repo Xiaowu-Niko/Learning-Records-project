@@ -214,7 +214,7 @@ int main()
     char arr2[]="qqqq";
     strncat(arr1,arr2,4);
     printf("%s",arr1); */
-    char arr1[]="abcdef";
+/*     char arr1[]="abcdef";
     char arr2[]="abcd";
     int len=strncmp(arr1,arr2,5);
     if(len == 0)
@@ -222,7 +222,17 @@ int main()
     else if(len<0)
         printf("<\n");
     else
-        printf(">\n");
+        printf(">\n"); */
+//strstr函数
+    char email[]="dashuaige.com";
+    char str[]="sh uaige";
+    char* ret=strstr(email,str);
+    if(ret==NULL)
+    {
+        printf("不存在\n");
+    }
+    else
+        printf("%s",ret);
 
 
 //复习试题
