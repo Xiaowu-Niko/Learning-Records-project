@@ -228,15 +228,28 @@ int main()
 //KMP算法
 //实现一个字符串中查找字符串
 
+//strerror函数 返回错误码对应的错误信息
+    printf("%s\n",strerror(0));
+    printf("%s\n",strerror(1));
+    printf("%s\n",strerror(2));
+    printf("%s\n",strerror(3));
+    printf("%s\n",strerror(4));
+    FILE* pf=fopen("test.txt","r");
+    if(pf==NULL)
+    {
+        printf("%s\n",strerror(errno));
+    }
+
+
 //strtok函数 找到字符前的所有字符
-    char arr[]="wudashuaege";
+/*     char arr[]="wudashuaege";
     char *sep="de";
     char cp[30]={0};
     strcpy(cp,arr);
     for(char *ret=strtok(cp,sep);ret!=NULL;ret=strtok(NULL,sep))
     {
         printf("%s ",ret);
-    }
+    } */
     
 //字符串和字符串函数
 /*     char* arr="abcde";
