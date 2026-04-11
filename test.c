@@ -168,8 +168,6 @@ int Div(int x,int y)
     }
 } */
 
-
-
 int cmp_int(const void* e1,const void* e2)
 {
     return (*(int*) e1) - (*(int*)e2);
@@ -179,6 +177,7 @@ int cmp_stu_name(const void* e1,const void* e2)
 {
     return strcmp(((struct stu*)e1)->name,((struct stu*)e2)->name);
 }
+
 int cmp_stu_age(const void*e1,const void* e2)
 {
     return (((struct stu*)e1)->age-((struct stu*)e2)->age);
@@ -195,6 +194,32 @@ char* my_strcpy(char *arr1,const char* arr2)
     }
     return ret;
 }
+
+
+char* my_strstr(const char* str1,const char* str2)
+{
+    const char* s1=str1;
+    const char* s2=str2;
+    const char* p=str1;
+    while(*p)
+    {
+        s1=p;
+        s2=str2;
+        while(*s2!=0 && *s1==*s2)
+        {
+            s1++;
+            s2++;
+        }        
+        if(*s2==0)
+            return p;
+        p++;
+    }
+    return NULL;
+
+}
+
+
+
 int main()
 {
 
@@ -225,8 +250,8 @@ int main()
         printf(">\n"); */
 //strstrº¯Êı
     char email[]="dashuaige.com";
-    char str[]="sh uaige";
-    char* ret=strstr(email,str);
+    char str[]="shuaige";
+    char* ret=my_strstr(email,str);
     if(ret==NULL)
     {
         printf("²»´æÔÚ\n");
