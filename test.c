@@ -228,17 +228,26 @@ int main()
 //KMP算法
 //实现一个字符串中查找字符串
 
+
+//memcpy函数 内存拷贝函数
+    int arr1[]={1,2,3,4,5,6,7};
+    int arr2[10]={0};
+    memcpy(arr2,arr1,28);
+    printf("%d",arr2);
+
 //strerror函数 返回错误码对应的错误信息
-    printf("%s\n",strerror(0));
+/*  printf("%s\n",strerror(0));
     printf("%s\n",strerror(1));
     printf("%s\n",strerror(2));
     printf("%s\n",strerror(3));
-    printf("%s\n",strerror(4));
-    FILE* pf=fopen("test.txt","r");
+    printf("%s\n",strerror(4)); */
+
+/*     FILE* pf=fopen("test.txt","r");
     if(pf==NULL)
     {
         printf("%s\n",strerror(errno));
-    }
+        return 1;
+    } */
 
 
 //strtok函数 找到字符前的所有字符
