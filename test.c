@@ -211,7 +211,7 @@ char* my_strstr(const char* str1,const char* str2)
             s2++;
         }        
         if(*s2==0)
-            return p;
+            return (char*) p;
         p++;
     }
     return NULL;
@@ -225,7 +225,18 @@ int main()
 
 
 
-   
+//KMP算法
+//实现一个字符串中查找字符串
+
+//strtok函数 找到字符前的所有字符
+    char arr[]="wudashuaege";
+    char *sep="de";
+    char cp[30]={0};
+    strcpy(cp,arr);
+    for(char *ret=strtok(cp,sep);ret!=NULL;ret=strtok(NULL,sep))
+    {
+        printf("%s ",ret);
+    }
     
 //字符串和字符串函数
 /*     char* arr="abcde";
@@ -249,15 +260,15 @@ int main()
     else
         printf(">\n"); */
 //strstr函数
-    char email[]="dashuaige.com";
-    char str[]="shuaige";
+/*     char email[]="abbbbcdef";
+    char str[]="b";
     char* ret=my_strstr(email,str);
     if(ret==NULL)
     {
         printf("不存在\n");
     }
     else
-        printf("%s",ret);
+        printf("%s",ret); */
 
 
 //复习试题
