@@ -242,9 +242,9 @@ int main()
 //memcpy函数 内存拷贝函数
     int arr1[]={1,2,3,4,5,6,7};
     int arr2[10]={0};
-    my_memcpy(arr2,arr1,12);
-    for(int i=0;i<10;i++)
-    printf("%d\n",arr2[i]);
+    my_memcpy(arr1+2,arr1,12);
+    for(int i=0;i<7;i++)
+    printf("%d\n",arr1[i]);    
 
 //strerror函数 返回错误码对应的错误信息
 /*  printf("%s\n",strerror(0));
