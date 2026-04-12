@@ -218,7 +218,17 @@ char* my_strstr(const char* str1,const char* str2)
 
 }
 
-
+void* my_memcpy(const void* dest,const void* src,size_t num)
+{
+    void* ret=dest;
+    while(num--)
+    {
+        *(char*)dest=*(char*)src;
+        dest=(char*)dest+1;
+        src=(char*)src+1;
+    }
+    return ret;
+}
 
 int main()
 {
@@ -232,8 +242,9 @@ int main()
 //memcpy函数 内存拷贝函数
     int arr1[]={1,2,3,4,5,6,7};
     int arr2[10]={0};
-    memcpy(arr2,arr1,28);
-    printf("%d",arr2);
+    my_memcpy(arr2,arr1,12);
+    for(int i=0;i<10;i++)
+    printf("%d\n",arr2[i]);
 
 //strerror函数 返回错误码对应的错误信息
 /*  printf("%s\n",strerror(0));
