@@ -239,18 +239,40 @@ int main()
 //实现一个字符串中查找字符串
 
 
+
+//小乐乐改数字
+    int input=0;
+    scanf("%d",&input);//输入123
+    int count=0;
+    int sum=0;
+    while(input)
+    {
+        int n=input%10;
+        input/=10;
+        if(n%2==0)
+        {
+            n=0;
+        }
+        else
+        {
+            n=1;
+        }
+        sum+=n*pow(10,count++);
+    }
+    printf("%d\n",sum);
+
 //memset函数 设置数值
-    char arr[]="hello world";
+/*     char arr[]="hello world";
     //memset(arr,'x',5);
     memset(arr+6,'x',3);
-    printf("%s\n",arr);
+    printf("%s\n",arr); */
 
-    
+
 //memcmp函数 内存比较函数
-    int arr1[]={1,2,3,4,5};
+/*     int arr1[]={1,2,3,4,5};
     int arr2[]={1,3,2};
     int ret=memcmp(arr1,arr2,12);
-    printf("%d\n",ret);
+    printf("%d\n",ret); */
 
 //memcpy函数 内存拷贝函数
 /*     int arr1[]={1,2,3,4,5,6,7};
