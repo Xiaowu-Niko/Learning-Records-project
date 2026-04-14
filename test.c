@@ -239,12 +239,19 @@ int main()
 //实现一个字符串中查找字符串
 
 
+
+//memcmp函数 内存比较函数
+    int arr1[]={1,2,3,4,5};
+    int arr2[]={1,3,2};
+    int ret=memcmp(arr1,arr2,12);
+    printf("%d\n",ret);
+
 //memcpy函数 内存拷贝函数
-    int arr1[]={1,2,3,4,5,6,7};
+/*     int arr1[]={1,2,3,4,5,6,7};
     int arr2[10]={0};
-    my_memcpy(arr1+2,arr1,12);
+    memmove(arr1+2,arr1+1,12);
     for(int i=0;i<7;i++)
-    printf("%d\n",arr1[i]);    
+    printf("%d\n",arr1[i]); */    
 
 //strerror函数 返回错误码对应的错误信息
 /*  printf("%s\n",strerror(0));
