@@ -239,7 +239,13 @@ int main()
 //实现一个字符串中查找字符串
 
 
+//memset函数 设置数值
+    char arr[]="hello world";
+    //memset(arr,'x',5);
+    memset(arr+6,'x',3);
+    printf("%s\n",arr);
 
+    
 //memcmp函数 内存比较函数
     int arr1[]={1,2,3,4,5};
     int arr2[]={1,3,2};
