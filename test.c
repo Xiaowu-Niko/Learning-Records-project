@@ -239,9 +239,18 @@ int main()
 //实现一个字符串中查找字符串
 
 
+//杀人犯
+    int a=0;
+    for(a='a';a<='d';a++)
+    {
+        if((a!='a')+(a=='c')+(a=='d')+(a!='d')==3)
+        printf("%c",a);
+    }
+    
+
 
 //小乐乐改数字
-    int input=0;
+/*     int input=0;
     scanf("%d",&input);//输入123
     int count=0;
     int sum=0;
@@ -259,7 +268,7 @@ int main()
         }
         sum+=n*pow(10,count++);
     }
-    printf("%d\n",sum);
+    printf("%d\n",sum); */
 
 //memset函数 设置数值
 /*     char arr[]="hello world";
