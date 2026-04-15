@@ -238,14 +238,40 @@ int main()
 //KMP算法
 //实现一个字符串中查找字符串
 
+//杨辉三角
+    int arr[20][20]={0};
+    int j=0;
+    int i=0;
+    int n=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {   
+        for(int k=i;k<n;k++)
+        {
+            printf(" ");
+        }
+        for(j=0;j<=i;j++)
+        {           
+            if(j==0||i==j)
+            {
+                arr[i][j]=1;
+            }
+            else
+            arr[i][j]=arr[i-1][j]+arr[i-1][j-1];
+            printf("%d ",arr[i][j]);
+        }
+        printf("\n");
+    }
 
-//杀人犯
-    int a=0;
+
+
+//找出杀人犯
+/*     int a=0;
     for(a='a';a<='d';a++)
     {
         if((a!='a')+(a=='c')+(a=='d')+(a!='d')==3)
         printf("%c",a);
-    }
+    } */
     
 
 
