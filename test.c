@@ -229,39 +229,66 @@ void* my_memcpy(const void* dest,const void* src,size_t num)
     }
     return ret;
 }
+//左旋函数
+void left_rotate(char* arr,int k)
+{
+    int len=strlen(arr);
+    k%=len;
+    
+    for(int j=0;j<k;j++)
+    {
+        char temp=arr[0];
+        for(int i=0;i<len-1;i++)
+        {
+            arr[i]=arr[i+1];
+        }
+        arr[len-1]=temp;
+    }
+    
+}
 
 int main()
 {
 
 
 
-//KMP算法
-//实现一个字符串中查找字符串
+
+//实现一个函数 可以左旋字符串中k个子符
+    char arr[]="abcde";
+    int k;
+    scanf("%d",&k);
+    left_rotate(arr,k);
+    printf("%s",arr);
+
 
 //杨辉三角
-    int arr[20][20]={0};
+/*     int arr[20][20]={0};
     int j=0;
     int i=0;
     int n=0;
-    scanf("%d",&n);
-    for(i=0;i<n;i++)
-    {   
-        for(int k=i;k<n;k++)
-        {
-            printf(" ");
-        }
-        for(j=0;j<=i;j++)
-        {           
-            if(j==0||i==j)
+    while(scanf("%d",&n)!=NULL)
+    {
+
+        for(i=0;i<n;i++)
+        {   
+            for(int k=i;k<n;k++)
             {
-                arr[i][j]=1;
+                printf(" ");
             }
-            else
-            arr[i][j]=arr[i-1][j]+arr[i-1][j-1];
-            printf("%d ",arr[i][j]);
+            for(j=0;j<=i;j++)
+            {           
+                if(j==0||i==j)
+                {
+                    arr[i][j]=1;
+                }
+                else
+                    arr[i][j]=arr[i-1][j]+arr[i-1][j-1];
+                printf("%d ",arr[i][j]);
+            }
+            printf("\n");
         }
-        printf("\n");
-    }
+    } */
+    
 
 
 
