@@ -232,9 +232,9 @@ void* my_memcpy(const void* dest,const void* src,size_t num)
 //左旋函数
 void left_rotate(char* arr,int k)
 {
+    assert(arr);
     int len=strlen(arr);
     k%=len;
-    
     for(int j=0;j<k;j++)
     {
         char temp=arr[0];
@@ -243,22 +243,52 @@ void left_rotate(char* arr,int k)
             arr[i]=arr[i+1];
         }
         arr[len-1]=temp;
-    }
-    
+    } 
 }
+
+//在二维数组里找一个数
+int find_num(int arr[3][3],int r,int c,int k)
+{
+    int x=0;
+    int y=c-1;
+    while(x<=r-1&&y>=0)
+    {
+
+        if(k==arr[x][y])
+        {
+            return 1;
+        }
+        else if(k<arr[x][y])
+        {
+            y--;
+        }
+        else
+        {
+            x++;
+        }
+
+    }
+    return 0;
+}
+
+
+
+
 
 int main()
 {
-
+//在二维数组里找一个数
+    int arr[3][3]={1,2,3,4,5,6,7,8,9};
+    printf("%d\n",find_num(arr,3,3,1));
 
 
 
 //实现一个函数 可以左旋字符串中k个子符
-    char arr[]="abcde";
+/*     char arr[]="abcde";
     int k;
     scanf("%d",&k);
     left_rotate(arr,k);
-    printf("%s",arr);
+    printf("%s",arr); */
 
 
 //杨辉三角
