@@ -247,15 +247,17 @@ void left_rotate(char* arr,int k)
 }
 
 //在二维数组里找一个数
-int find_num(int arr[3][3],int r,int c,int k)
+int find_num(int arr[3][3],int *r,int *c,int k)
 {
     int x=0;
-    int y=c-1;
-    while(x<=r-1&&y>=0)
+    int y=*c-1;
+    while(x<=*r-1&&y>=0)
     {
 
         if(k==arr[x][y])
         {
+            *r=x;
+            *c=y;
             return 1;
         }
         else if(k<arr[x][y])
@@ -274,12 +276,17 @@ int find_num(int arr[3][3],int r,int c,int k)
 
 
 
-
 int main()
 {
 //在二维数组里找一个数
     int arr[3][3]={1,2,3,4,5,6,7,8,9};
-    printf("%d\n",find_num(arr,3,3,1));
+    int k=0;
+    int x=3;
+    int y=3;
+    scanf("%d",&k);
+    printf("%d\n",find_num(arr,&x,&y,k));
+    printf("%d %d",x,y);
+
 
 
 
