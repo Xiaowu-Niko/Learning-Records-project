@@ -279,6 +279,7 @@ int find_num(int arr[3][3],int *r,int *c,int k)
 int main()
 {
 //在二维数组里找一个数
+
     int arr[3][3]={1,2,3,4,5,6,7,8,9};
     int k=0;
     int x=3;
