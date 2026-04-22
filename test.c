@@ -273,22 +273,48 @@ int find_num(int arr[3][3],int *r,int *c,int k)
     return 0;
 }
 
+int is_left_rotate(char* arr1,char* arr2)
+{
+    assert(arr1);
+    int len=strlen(arr1);
+    //k%=len;
+    for(int j=0;j<len;j++)
+    {
+        char temp=arr1[0];
+        for(int i=0;i<len-1;i++)
+        {
+            arr1[i]=arr1[i+1];
+        }
+        arr1[len-1]=temp;
+        if(strcmp(arr1,arr2)==0)
+        {
+            return 1;
+        }
+    } 
+}
+
+
 
 
 
 int main()
 {
+//判断arr2中的字符串是否可以通过arr1中的字符串旋转得到
+
+
+
+
+
+
+
 //在二维数组里找一个数
-
-
-
-    int arr[3][3]={1,2,3,4,5,6,7,8,9};
+/*     int arr[3][3]={1,2,3,4,5,6,7,8,9};
     int k=0;
     int x=3;
     int y=3;
     scanf("%d",&k);
     printf("%d\n",find_num(arr,&x,&y,k));
-    printf("%d %d",x,y);
+    printf("%d %d",x,y); */
 
 
 
