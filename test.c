@@ -310,7 +310,7 @@ int main()
     {
         for(j=0;j<m;j++)
         {
-            scanf("%d ",&arr[i][j]);
+            scanf("%d",&arr[i][j]);
         }
     }
 
