@@ -300,13 +300,36 @@ int is_left_rotate(char* arr1,char* arr2)
 
 int main()
 {
+
+//矩阵转置
+    int n=0,m=0;
+    scanf("%d%d",&n,&m);
+    int arr[10][10]={0};
+    int i=0,j=0;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            scanf("%d ",&arr[i][j]);
+        }
+    }
+
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d ",arr[j][i]);
+        }
+        printf("\n");
+    }
+
+
 //判断arr2中的字符串是否可以通过arr1中的字符串旋转得到
-    char arr1[]="abcdef";
+/*     char arr1[]="abcdef";
     char arr2[]="defab";
     int ret=is_left_rotate(arr1,arr2);
     printf("%d",ret);
-
-
+ */
 
 
 //在二维数组里找一个数
