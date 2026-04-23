@@ -301,8 +301,41 @@ int is_left_rotate(char* arr1,char* arr2)
 int main()
 {
 
+//有序序列判断
+    int n=0;
+    int arr[50]={0};
+    int i=0;
+    int flag1=0;
+    int flag2=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++);
+    {
+        scanf("%d",&arr[i]);
+        if(i>0)
+        {
+            if(arr[i]>arr[i-1])
+            {
+                flag1=1;
+            }
+            else
+            {
+                flag2=1;
+            }
+        }
+    }
+    if(flag1+flag2==1)
+    {
+        printf("sorted\n");
+    }
+    else
+    {
+        printf("unsorted\n");
+    }
+
+
+
 //矩阵转置
-    int n=0,m=0;
+/*     int n=0,m=0;
     scanf("%d%d",&n,&m);
     int arr[10][10]={0};
     int i=0,j=0;
@@ -313,7 +346,6 @@ int main()
             scanf("%d",&arr[i][j]);
         }
     }
-
     for(i=0;i<m;i++)
     {
         for(j=0;j<n;j++)
@@ -321,7 +353,7 @@ int main()
             printf("%d ",arr[j][i]);
         }
         printf("\n");
-    }
+    } */
 
 
 //判断arr2中的字符串是否可以通过arr1中的字符串旋转得到
