@@ -308,7 +308,7 @@ int main()
     int flag1=0;
     int flag2=0;
     scanf("%d",&n);
-    for(i=0;i<n;i++);
+    for(i=0;i<n;i++)
     {
         scanf("%d",&arr[i]);
         if(i>0)
@@ -317,7 +317,7 @@ int main()
             {
                 flag1=1;
             }
-            else
+            else if(arr[i]<arr[i-1])
             {
                 flag2=1;
             }
