@@ -290,7 +290,8 @@ int is_left_rotate(char* arr1,char* arr2)
         {
             return 1;
         }
-    } 
+    }
+    return 0;
 }
 
 
@@ -300,9 +301,10 @@ int is_left_rotate(char* arr1,char* arr2)
 int main()
 {
 //判断arr2中的字符串是否可以通过arr1中的字符串旋转得到
-
-
-
+    char arr1[]="abcdef";
+    char arr2[]="defab";
+    int ret=is_left_rotate(arr1,arr2);
+    printf("%d",ret);
 
 
 
