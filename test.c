@@ -301,6 +301,15 @@ int is_left_rotate(char* arr1,char* arr2)
 int main()
 {
 
+
+//结构体自引用
+    struct Stu
+    {
+        int age;
+        struct Stu *naxt;
+        
+    };
+
 //有序序列判断
 
 /*     int n=0;
