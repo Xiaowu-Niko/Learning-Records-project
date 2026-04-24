@@ -302,13 +302,15 @@ int main()
 {
 
 
-//结构体自引用
-    struct Stu
+//结构体内存对齐
+    struct S1
     {
-        int age;
-        struct Stu *naxt;
         
+        char c1;
+        double c2;
+        int age;
     };
+    printf("%d\n",sizeof(struct S1));
 
 //有序序列判断
 
