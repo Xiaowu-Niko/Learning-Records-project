@@ -302,7 +302,8 @@ int main()
 {
 
 //ÓĞĞòĞòÁĞÅĞ¶Ï
-    int n=0;
+
+/*     int n=0;
     int arr[50]={0};
     int i=0;
     int flag1=0;
@@ -331,7 +332,7 @@ int main()
     {
         printf("unsorted\n");
     }
-
+ */
 
 
 //¾ØÕó×ªÖÃ
