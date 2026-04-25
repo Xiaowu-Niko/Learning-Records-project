@@ -303,6 +303,7 @@ int main()
 
 
 //结构体内存对齐
+
     struct S1
     {
         
