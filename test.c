@@ -307,7 +307,6 @@ int main()
 
     struct S1
     {
-        
         char c1;
         double c2;
         int age;
