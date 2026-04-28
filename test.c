@@ -305,12 +305,19 @@ int main()
 //结构体内存对齐
 
 
-    struct S1
+    struct S1 
     {
         char c1;
-        double c2;
-        int age;
+        int c2;
+        char age;
     };
+    struct S2
+    {
+        char c1;
+        struct S1 S1;
+        double d;
+    };
+    
     printf("%d\n",sizeof(struct S1));
 
 //有序序列判断
