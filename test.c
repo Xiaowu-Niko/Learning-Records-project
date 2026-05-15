@@ -4,6 +4,28 @@
 #include <math.h>
 #include <windows.h>
 #include <string.h>
+
+
+typedef struct Peoinfo
+{
+    char name[10];
+    int age;
+    char sex[10];
+}Peoinfo;
+
+typedef struct Contact
+{
+    Peoinfo date[100];
+    int n;
+}Contact;
+
+void AddCon(Contact* cp)
+{
+
+    scanf("%s",cp->date[cp->n].name);
+}
+
+
 struct peo
 { 
     
@@ -301,9 +323,21 @@ int is_left_rotate(char* arr1,char* arr2)
 int main()
 {
 
+//通讯录
+    printf("********1.kaishi**2.tuichu*3.addn\n");
+    switch(1)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    default:
+        break;
+    }
+    
 
 //结构体内存对齐
-    struct S1 
+/*     struct S1 
     {
         char c1;
         int c2;
@@ -316,7 +350,7 @@ int main()
         double d;
     };
     
-    printf("%d\n",sizeof(struct S1));
+    printf("%d\n",sizeof(struct S1)); */
 
 //有序序列判断
 
@@ -1039,4 +1073,5 @@ int main()
     return 0;
 
 }
+
 
