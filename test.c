@@ -323,6 +323,17 @@ int is_left_rotate(char* arr1,char* arr2)
 int main()
 {
 
+    int arr[10]={0};
+    int* p=(int*)malloc(40);
+    for(int i=0;i<10;i++)
+    {
+        *(p+i)=i;
+    }
+    for(int i=0;i<10;i++)
+    {
+        printf("%d\n",*(p+i));
+    }
+
 //ͨѶ¼
     printf("********1.kaishi**2.tuichu*3.addn\n");
     switch(1)
