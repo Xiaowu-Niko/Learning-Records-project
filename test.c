@@ -322,8 +322,8 @@ int is_left_rotate(char* arr1,char* arr2)
 
 int main()
 {
-
-    int arr[10]={0};
+//动态内存
+/*     int arr[10]={0};
     int* p=(int*)malloc(40);
     for(int i=0;i<10;i++)
     {
@@ -333,11 +333,27 @@ int main()
     {
         printf("%d\n",*(p+i));
     }
+    
+    p=NULL; */
+    
+    int *p=calloc(10,sizeof(int));
+    if(p==NULL)
+    {
+        printf("error\n");
+    }
+    for(int i=0;i<10;i++)
+    {
+        *(p+i)=i;
+    }
+    for(int i=0;i<10;i++)
+    {
+        printf("%d\n",*(p+i));
+    }
     free(p);
-    p=NULL;
-//通讯录
 
-    printf("********1.kaishi**2.tuichu*3.addn\n");
+
+//通讯录
+/*     printf("********1.kaishi**2.tuichu*3.addn\n");
     switch(1)
     {
     case 1:
@@ -346,7 +362,7 @@ int main()
         break;
     default:
         break;
-    }
+    } */
     
 
 //结构体内存对齐
