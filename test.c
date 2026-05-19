@@ -334,7 +334,9 @@ int main()
         printf("%d\n",*(p+i));
     }
     free(p);
+    p=NULL;
 //ͨѶ¼
+
     printf("********1.kaishi**2.tuichu*3.addn\n");
     switch(1)
     {
