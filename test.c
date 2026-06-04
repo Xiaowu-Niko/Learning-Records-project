@@ -38,33 +38,58 @@ struct stu
     char name[20];
     int age;
 };
-//计算器函数
-void calc (int (*p)(int ,int ))
-{   
-    int x,y;
-    printf("输入两个数\n");
-    scanf("%d %d",&x,&y);
-    int ret=p(x,y);
-    printf("%d",ret);
-    //return ret;
-}
-int Add(int x, int y)
+// ============================================================
+// 优化版：函数指针计算器
+// 核心思想：通过函数指针参数，将"做什么运算"的决定权交给调用者
+// ============================================================
+
+/**
+ * @brief 通用的计算执行器
+ * @param p 函数指针 - 指向六佖的运算嗟数（Add/Sub/Mul/Div）
+ *
+ * 作用：负责统一的输入/输出流程，宝际运算由传入的函数指针决定。
+ * 好处：新增运算时只需写运算函数，无需修改 calc 本身（开闭原则）
+ */
+void calc(int (*p)(int, int))
 {
-    return x + y;
+    int x, y;
+    int ret;
+
+    printf("请输入两个整数: ");
+    // 检查 scanf 返回值，确保输入合法
+    if (scanf("%d %d", &x, &y) != 2) {
+        printf("输入格式错误！");
+        // 清空输入缓冲区，防止死循环
+        while (getchar() != '\n');
+        return;
+    }
+
+    ret = p(x, y);  // 通过函数指针调用具体的运算
+    printf("结果: %d\n", ret);
 }
-int Sub(int x,int y)
+
+/** 加法 */
+int Add(int x, int y) { return x + y; }
+
+/** 减法 */
+int Sub(int x, int y) { return x - y; }
+
+/** 乘法 */
+int Mul(int x, int y) { return x * y; }
+
+/**
+ * @brief 除法（带除零保护）
+ * @note 原版直接 x/y，除零会导致程序崩溃。优化后做了安全处理。
+ */
+int Div(int x, int y)
 {
-    return x-y;
+    if (y == 0) {
+        printf("错误：除数不能为 0！");
+        return 0;  // 返回 0 表示异常结果
+    }
+    return x / y;
 }
-int Mul(int x ,int y)
-{
-    return x*y;
-}
-int Div(int x,int y)
-{
-    return x/y;
-}
-//阶乘
+//锟阶筹拷
 /* int jie(int x)
 {
     if (x == 1)
@@ -251,7 +276,7 @@ void* my_memcpy(const void* dest,const void* src,size_t num)
     }
     return ret;
 }
-//左旋函数
+//锟斤拷锟斤拷锟斤拷锟斤拷
 void left_rotate(char* arr,int k)
 {
     assert(arr);
@@ -268,7 +293,7 @@ void left_rotate(char* arr,int k)
     } 
 }
 
-//在二维数组里找一个数
+//锟节讹拷维锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷
 int find_num(int arr[3][3],int *r,int *c,int k)
 {
     int x=0;
@@ -322,7 +347,7 @@ int is_left_rotate(char* arr1,char* arr2)
 
 int main()
 {
-//动态内存
+//锟斤拷态锟节达拷
 /*     int arr[10]={0};
     int* p=(int*)malloc(40);
     for(int i=0;i<10;i++)
@@ -336,19 +361,23 @@ int main()
     
     p=NULL; */
     
-    int *p=calloc(10,sizeof(int));
+    int *p=(int*)calloc(10,sizeof(int));
     if(p==NULL)
     {
         printf("error\n");
     }
     for(int i=0;i<10;i++)
     {
+        printf("%d ",*(p+i));
+    }
+/*     for(int i=0;i<10;i++)
+    {
         *(p+i)=i;
     }
     for(int i=0;i<10;i++)
     {
         printf("%d\n",*(p+i));
-    }
+    } */
     free(p);
 
 
@@ -365,7 +394,7 @@ int main()
     } */
     
 
-//结构体内存对齐
+//锟结构锟斤拷锟节达拷锟斤拷锟?
 /*     struct S1 
     {
         char c1;
@@ -381,7 +410,7 @@ int main()
     
     printf("%d\n",sizeof(struct S1)); */
 
-//有序序列判断
+//锟斤拷锟斤拷锟斤拷锟斤拷锟叫讹拷
 
 /*     int n=0;
     int arr[50]={0};
@@ -415,7 +444,7 @@ int main()
  */
 
 
-//矩阵转置
+//锟斤拷锟斤拷转锟斤拷
 /*     int n=0,m=0;
     scanf("%d%d",&n,&m);
     int arr[10][10]={0};
@@ -437,7 +466,7 @@ int main()
     } */
 
 
-//判断arr2中的字符串是否可以通过arr1中的字符串旋转得到
+//锟叫讹拷arr2锟叫碉拷锟街凤拷锟斤拷锟角凤拷锟斤拷锟酵?锟斤拷arr1锟叫碉拷锟街凤拷锟斤拷锟斤拷转锟矫碉拷
 /*     char arr1[]="abcdef";
     char arr2[]="defab";
     int ret=is_left_rotate(arr1,arr2);
@@ -445,7 +474,7 @@ int main()
  */
 
 
-//在二维数组里找一个数
+//锟节讹拷维锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷
 /*     int arr[3][3]={1,2,3,4,5,6,7,8,9};
     int k=0;
     int x=3;
@@ -457,7 +486,7 @@ int main()
 
 
 
-//实现一个函数 可以左旋字符串中k个子符
+//实锟斤拷一锟斤拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷锟街凤拷锟斤拷锟斤拷k锟斤拷锟接凤拷
 /*     char arr[]="abcde";
     int k;
     scanf("%d",&k);
@@ -465,7 +494,7 @@ int main()
     printf("%s",arr); */
 
 
-//杨辉三角
+//锟斤拷锟斤拷锟斤拷锟?
 /*     int arr[20][20]={0};
     int j=0;
     int i=0;
@@ -496,7 +525,7 @@ int main()
 
 
 
-//找出杀人犯
+//锟揭筹拷杀锟剿凤拷
 /*     int a=0;
     for(a='a';a<='d';a++)
     {
@@ -506,9 +535,9 @@ int main()
     
 
 
-//小乐乐改数字
+//小锟斤拷锟街革拷锟斤拷锟斤拷
 /*     int input=0;
-    scanf("%d",&input);//输入123
+    scanf("%d",&input);//锟斤拷锟斤拷123
     int count=0;
     int sum=0;
     while(input)
@@ -527,27 +556,27 @@ int main()
     }
     printf("%d\n",sum); */
 
-//memset函数 设置数值
+//memset锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷值
 /*     char arr[]="hello world";
     //memset(arr,'x',5);
     memset(arr+6,'x',3);
     printf("%s\n",arr); */
 
 
-//memcmp函数 内存比较函数
+//memcmp锟斤拷锟斤拷 锟节达拷冉虾锟斤拷锟?
 /*     int arr1[]={1,2,3,4,5};
     int arr2[]={1,3,2};
     int ret=memcmp(arr1,arr2,12);
     printf("%d\n",ret); */
 
-//memcpy函数 内存拷贝函数
+//memcpy锟斤拷锟斤拷 锟节存拷锟斤拷锟斤拷锟斤拷
 /*     int arr1[]={1,2,3,4,5,6,7};
     int arr2[10]={0};
     memmove(arr1+2,arr1+1,12);
     for(int i=0;i<7;i++)
     printf("%d\n",arr1[i]); */    
 
-//strerror函数 返回错误码对应的错误信息
+//strerror锟斤拷锟斤拷 锟斤拷锟截达拷锟斤拷锟斤拷锟接︼拷拇锟斤拷锟斤拷锟较?
 /*  printf("%s\n",strerror(0));
     printf("%s\n",strerror(1));
     printf("%s\n",strerror(2));
@@ -562,7 +591,7 @@ int main()
     } */
 
 
-//strtok函数 找到字符前的所有字符
+//strtok锟斤拷锟斤拷 锟揭碉拷锟街凤拷前锟斤拷锟斤拷锟斤拷锟街凤拷
 /*     char arr[]="wudashuaege";
     char *sep="de";
     char cp[30]={0};
@@ -572,7 +601,7 @@ int main()
         printf("%s ",ret);
     } */
     
-//字符串和字符串函数
+//锟街凤拷锟斤拷锟斤拷锟街凤拷锟斤拷锟斤拷锟斤拷
 /*     char* arr="abcde";
     int len =strlen(arr);
     printf("%d\n",len);
@@ -593,19 +622,19 @@ int main()
         printf("<\n");
     else
         printf(">\n"); */
-//strstr函数
+//strstr锟斤拷锟斤拷
 /*     char email[]="abbbbcdef";
     char str[]="b";
     char* ret=my_strstr(email,str);
     if(ret==NULL)
     {
-        printf("不存在\n");
+        printf("锟斤拷锟斤拷锟斤拷\n");
     }
     else
         printf("%s",ret); */
 
 
-//复习试题
+//锟斤拷习锟斤拷锟斤拷
 /*     char* c[]={"ENTER","NEW","POINT","FIRST"};
     char** cp[]={c+3,c+2,c+1,c};
     char*** cpp=cp;
@@ -635,7 +664,7 @@ int main()
     printf("%d\n",sizeof(*(&a[0]+1)));//16
     printf("%d\n",sizeof(*a));//16
     printf("%d\n",sizeof(a[3]));//16 */
-//测试使用qsort来排序结构体数据
+//锟斤拷锟斤拷使锟斤拷qsort锟斤拷锟斤拷锟斤拷峁癸拷锟斤拷锟斤拷锟?
 /*     int arr[10]={0,9,8,7,6,5,4,3,2,1};
     //int sz=sizeof(arr)/sizeof(arr[0]);
     struct stu s[]={{"zhangsna",25},{"lisi",21},{"wangwu",29},{"xiaoliu",31}};
@@ -650,7 +679,7 @@ int main()
 
 
 
-//学习qsort 使用快速排序的思想
+//学习qsort 使锟矫匡拷锟斤拷锟斤拷锟斤拷锟剿硷拷锟?
 /*     int arr[10]={9,8,7,6,5,4,3,2,1,0};
     int sz=sizeof(arr)/sizeof(arr[0]);
     qsort(arr,sz,sizeof(arr[0]),cmp_int);
@@ -675,27 +704,27 @@ int main()
     
 
 
-//函数指针的用途,回调函数
-//和函数指针数组的学习
-//计算器    
+//锟斤拷锟斤拷指锟斤拷锟斤拷锟酵?,锟截碉拷锟斤拷锟斤拷
+//锟酵猴拷锟斤拷指锟斤拷锟斤拷锟斤拷锟窖?习
+//锟斤拷锟斤拷锟斤拷    
 /*      int x=0;
     int y=0;
     int ret=0;
     int input=0;
-//函数指针数组
-//转移表
+//锟斤拷锟斤拷指锟斤拷锟斤拷锟斤拷
+//转锟狡憋拷
     int (*arr[5])(int ,int )={0, Add,Sub,Mul,Div};
     do
     {
-        printf("输入计算方式\n");
+        printf("锟斤拷锟斤拷锟斤拷惴绞絓n");
         scanf("%d",&input);
         if(input==0)
         {
-            printf("退出\n");
+            printf("锟剿筹拷\n");
         }
         else if(input>=1&&input <=4)
         {
-            printf("输入要计算的数\n");
+            printf("锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟絓n");
             scanf("%d %d",&x,&y);
             ret=arr[input](x,y);
             printf("%d\n",ret);
@@ -703,14 +732,14 @@ int main()
         }
         else
         {
-            printf("输入错误\n");
+            printf("锟斤拷锟斤拷锟斤拷锟絓n");
         }
     } while (input);
     
     /* int *arr[5]={arr1,arr2,arr3,arr4,arr5};
     int (*arr)[5]=&arr; */
 /*     int (*pf[5])(int,int)={0,Add,Sub,Mul,Div};
-//指向【函数指针数组】的指针
+//指锟津【猴拷锟斤拷指锟斤拷锟斤拷锟介】锟斤拷指锟斤拷
     int (*(*ppf)[5])(int,int)=&pf; 
 */
 
@@ -719,14 +748,14 @@ int main()
 
     /* do
     {
-        printf("选择计算方式\n加法1,减法2,乘法3,除法4\n");
+        printf("选锟斤拷锟斤拷惴绞絓n锟接凤拷1,锟斤拷锟斤拷2,锟剿凤拷3,锟斤拷锟斤拷4\n");
         scanf("%d",&input);
         //ret=add(x,y);
         
         switch(input)
         {
         case 0:
-            printf("退出游戏\n");
+            printf("锟剿筹拷锟斤拷戏\n");
             break;
         case 1:
             
@@ -742,7 +771,7 @@ int main()
             calc(Div);
             break;
         default:
-            printf("输入错误\n");
+            printf("锟斤拷锟斤拷锟斤拷锟絓n");
             break;
         }
 
@@ -755,8 +784,8 @@ int main()
 
 
 
-//函数指针的学习
-//函数指针传递，在函数中调用函数
+//锟斤拷锟斤拷指锟斤拷锟窖?习
+//锟斤拷锟斤拷指锟诫传锟捷ｏ拷锟节猴拷锟斤拷锟叫碉拷锟矫猴拷锟斤拷
     
     /* //printf("%p ",&Add);
     //printf("%p ",Add);
@@ -771,11 +800,11 @@ int main()
     void (*signal(int,void(*)(int)))(int);
  */
     
-//数组指针的使用,数组参数和指针参数    
+//锟斤拷锟斤拷指锟斤拷锟绞癸拷锟?,锟斤拷锟斤拷锟斤拷锟斤拷锟街革拷锟斤拷锟斤拷    
     /* int arr[]={1,2,3,4,5,6,7,8,9,10};
     int (*p)[10]=&arr;
     int arr[5]={0};
-    int (*p)[5]=&arr;//数组指针
+    int (*p)[5]=&arr;//锟斤拷锟斤拷指锟斤拷
     int sz=sizeof(arr)/sizeof(arr[0]);
     for(int i=0;i<sz;i++)
     {
@@ -786,7 +815,7 @@ int main()
 
 
 
-    //指针数组模拟二维数组
+    //指锟斤拷锟斤拷锟斤拷模锟斤拷锟轿?锟斤拷锟斤拷
     /* int arr1[5]={1,2,3,4,5};
     int arr2[5]={2,3,4,5,6};
     int arr3[5]={3,4,5,6,7};
@@ -805,7 +834,7 @@ int main()
     } */
 
 
-    //两个有序排列数合并一个有序排列
+    //锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟较诧拷一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
     /* int n,m;
     scanf("%d %d",&n,&m);
     int narr[n];
@@ -849,17 +878,17 @@ int main()
         }
     } */
      
-/* //一个数组，前半部分是奇数，后半是偶数
-    //输入
+/* //一锟斤拷锟斤拷锟介，前锟诫部锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟脚硷拷锟?
+    //锟斤拷锟斤拷
     int arr[10]={0};
     int sz=sizeof(arr)/sizeof(arr[0]);
     for(int i=0;i<10;i++)
     {
         scanf("%d",arr+i);
     }
-    //调整
+    //锟斤拷锟斤拷
     move_odd_even(arr,sz);
-    //输出
+    //锟斤拷锟?
     for(int i=0;i<10;i++)
     {
         printf("%d",*(arr+i));
@@ -905,7 +934,7 @@ int main()
 
 
 
-//两个数的最小公倍数
+//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷小锟斤拷锟斤拷锟斤拷
     /*int n, m;
     scanf("%d%d", &n, &m);
     int i = 1;
@@ -918,7 +947,7 @@ int main()
 
 
 
-//喝饮料两块一瓶，两个瓶盖换一瓶
+//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一瓶锟斤拷锟斤拷锟斤拷瓶锟角伙拷一瓶
         //int n = 0;
         //int sum = 0;
         //int count = 0;
@@ -943,7 +972,7 @@ int main()
 
 
 
-    //打印菱形
+    //锟斤拷印锟斤拷锟斤拷
         /*int i = 0;
         int j = 0;
         int k = 0;
@@ -980,7 +1009,7 @@ int main()
 
 
 
-        //0-100000的水仙花数
+        //0-100000锟斤拷水锟缴伙拷锟斤拷
             //int count = 0;
             //int sum = 0;
             //for (int i = 0; i <= 100000; i++)
@@ -1017,7 +1046,7 @@ int main()
 
 
 
-        //倒换字符串
+        //锟斤拷锟斤拷锟街凤拷锟斤拷
             //int arr[6] = { 1,2,3,4,5,6 };
             //char ch[10001] = { 0 };
             ////while (scanf("%s", ch) != EOF) {};
@@ -1102,5 +1131,7 @@ int main()
     return 0;
 
 }
+
+
 
 
