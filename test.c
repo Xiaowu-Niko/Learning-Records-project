@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <assert.h>
 #include <math.h>
@@ -39,57 +39,57 @@ struct stu
     int age;
 };
 // ============================================================
-// �Ż��棺����ָ�������
-// ����˼�룺ͨ������ָ���������"��ʲô����"�ľ���Ȩ����������
+// 优化版：函数指针计算器
+// 核心思想：通过函数指针参数，将"做什么运算"的决定权交给调用者
 // ============================================================
 
 /**
- * @brief ͨ�õļ���ִ����
- * @param p ����ָ�� - ָ�����ص����������Add/Sub/Mul/Div��
+ * @brief 通用的计算执行器
+ * @param p 函数指针 - 指向具体的运算函数（Add/Sub/Mul/Div）
  *
- * ���ã�����ͳһ������/������̣����������ɴ���ĺ���ָ�������
- * �ô�����������ʱֻ��д���㺯���������޸� calc ����������ԭ��
+ * 作用：负责统一的输入/输出流程，实际运算由传入的函数指针决定。
+ * 好处：新增运算时只需写运算函数，无需修改 calc 本身（开闭原则）
  */
 void calc(int (*p)(int, int))
 {
     int x, y;
     int ret;
 
-    printf("��������������: ");
-    // ��� scanf ����ֵ��ȷ������Ϸ�
+    printf("请输入两个整数: ");
+    // 检查 scanf 返回值，确保输入合法
     if (scanf("%d %d", &x, &y) != 2) {
-        printf("�����ʽ����");
-        // ������뻺��������ֹ��ѭ��
+        printf("输入格式错误！");
+        // 清空输入缓冲区，防止死循环
         while (getchar() != '\n');
         return;
     }
 
-    ret = p(x, y);  // ͨ������ָ����þ��������
-    printf("���: %d\n", ret);
+    ret = p(x, y);  // 通过函数指针调用具体的运算
+    printf("结果: %d\n", ret);
 }
 
-/** �ӷ� */
+/** 加法 */
 int Add(int x, int y) { return x + y; }
 
-/** ���� */
+/** 减法 */
 int Sub(int x, int y) { return x - y; }
 
-/** �˷� */
+/** 乘法 */
 int Mul(int x, int y) { return x * y; }
 
 /**
- * @brief �����������㱣����
- * @note ԭ��ֱ�� x/y������ᵼ�³���������Ż������˰�ȫ������
+ * @brief 除法（带除零保护）
+ * @note 原版直接 x/y，除零会导致程序崩溃。优化后做了安全处理。
  */
 int Div(int x, int y)
 {
     if (y == 0) {
-        printf("���󣺳�������Ϊ 0��");
-        return 0;  // ���� 0 ��ʾ�쳣���
+        printf("错误：除数不能为 0！");
+        return 0;  // 返回 0 表示异常结果
     }
     return x / y;
 }
-//�׳�
+//阶乘
 /* int jie(int x)
 {
     if (x == 1)
@@ -276,7 +276,7 @@ void* my_memcpy(const void* dest,const void* src,size_t num)
     }
     return ret;
 }
-//��������
+//字符串左旋
 void left_rotate(char* arr,int k)
 {
     assert(arr);
@@ -293,7 +293,7 @@ void left_rotate(char* arr,int k)
     } 
 }
 
-//�ڶ�ά��������һ����
+//在二维数组中找一个数
 int find_num(int arr[3][3],int *r,int *c,int k)
 {
     int x=0;
@@ -347,7 +347,7 @@ int is_left_rotate(char* arr1,char* arr2)
 
 int main()
 {
-//��̬�ڴ�
+//动态内存
 /*     int arr[10]={0};
     int* p=(int*)malloc(40);
     for(int i=0;i<10;i++)
@@ -381,7 +381,7 @@ int main()
     free(p);
 
 
-//ͨѶ¼
+//通讯录
 /*     printf("********1.kaishi**2.tuichu*3.addn\n");
     switch(1)
     {
@@ -394,7 +394,7 @@ int main()
     } */
     
 
-//�ṹ���ڴ����?
+//结构体内存对齐
 /*     struct S1 
     {
         char c1;
@@ -410,7 +410,7 @@ int main()
     
     printf("%d\n",sizeof(struct S1)); */
 
-//���������ж�
+//数组排序判断
 
 /*     int n=0;
     int arr[50]={0};
@@ -444,7 +444,7 @@ int main()
  */
 
 
-//����ת��
+//矩阵转置
 /*     int n=0,m=0;
     scanf("%d%d",&n,&m);
     int arr[10][10]={0};
@@ -466,7 +466,7 @@ int main()
     } */
 
 
-//�ж�arr2�е��ַ����Ƿ�����?��arr1�е��ַ�����ת�õ�
+//判断arr2中的字符串是否是arr1中的字符串旋转得到
 /*     char arr1[]="abcdef";
     char arr2[]="defab";
     int ret=is_left_rotate(arr1,arr2);
@@ -474,7 +474,7 @@ int main()
  */
 
 
-//�ڶ�ά��������һ����
+//在二维数组中找一个数
 /*     int arr[3][3]={1,2,3,4,5,6,7,8,9};
     int k=0;
     int x=3;
@@ -486,7 +486,7 @@ int main()
 
 
 
-//ʵ��һ������ ���������ַ�����k���ӷ�
+//实现一个函数 可以左旋字符串中的k个字符
 /*     char arr[]="abcde";
     int k;
     scanf("%d",&k);
@@ -494,7 +494,7 @@ int main()
     printf("%s",arr); */
 
 
-//�������?
+//杨辉三角
 /*     int arr[20][20]={0};
     int j=0;
     int i=0;
@@ -525,7 +525,7 @@ int main()
 
 
 
-//�ҳ�ɱ�˷�
+//找出杀手
 /*     int a=0;
     for(a='a';a<='d';a++)
     {
@@ -535,9 +535,9 @@ int main()
     
 
 
-//С���ָ�����
+//小端字节序
 /*     int input=0;
-    scanf("%d",&input);//����123
+    scanf("%d",&input);//输入123
     int count=0;
     int sum=0;
     while(input)
@@ -556,27 +556,27 @@ int main()
     }
     printf("%d\n",sum); */
 
-//memset���� ������ֵ
+//memset函数 内存设置
 /*     char arr[]="hello world";
     //memset(arr,'x',5);
     memset(arr+6,'x',3);
     printf("%s\n",arr); */
 
 
-//memcmp���� �ڴ�ȽϺ���?
+//memcmp函数 内存比较函数
 /*     int arr1[]={1,2,3,4,5};
     int arr2[]={1,3,2};
     int ret=memcmp(arr1,arr2,12);
     printf("%d\n",ret); */
 
-//memcpy���� �ڴ濽������
+//memcpy函数 内存拷贝函数
 /*     int arr1[]={1,2,3,4,5,6,7};
     int arr2[10]={0};
     memmove(arr1+2,arr1+1,12);
     for(int i=0;i<7;i++)
     printf("%d\n",arr1[i]); */    
 
-//strerror���� ���ش������Ӧ�Ĵ������?
+//strerror函数 返回错误对应的错误信息
 /*  printf("%s\n",strerror(0));
     printf("%s\n",strerror(1));
     printf("%s\n",strerror(2));
@@ -591,7 +591,7 @@ int main()
     } */
 
 
-//strtok���� �ҵ��ַ�ǰ�������ַ�
+//strtok函数 找到分割符前面的字符串
 /*     char arr[]="wudashuaege";
     char *sep="de";
     char cp[30]={0};
@@ -601,7 +601,7 @@ int main()
         printf("%s ",ret);
     } */
     
-//�ַ������ַ�������
+//字符串长度计算
 /*     char* arr="abcde";
     int len =strlen(arr);
     printf("%d\n",len);
@@ -622,19 +622,19 @@ int main()
         printf("<\n");
     else
         printf(">\n"); */
-//strstr����
+//strstr函数
 /*     char email[]="abbbbcdef";
     char str[]="b";
     char* ret=my_strstr(email,str);
     if(ret==NULL)
     {
-        printf("������\n");
+        printf("找不到\n");
     }
     else
         printf("%s",ret); */
 
 
-//��ϰ����
+//练习题
 /*     char* c[]={"ENTER","NEW","POINT","FIRST"};
     char** cp[]={c+3,c+2,c+1,c};
     char*** cpp=cp;
@@ -664,7 +664,7 @@ int main()
     printf("%d\n",sizeof(*(&a[0]+1)));//16
     printf("%d\n",sizeof(*a));//16
     printf("%d\n",sizeof(a[3]));//16 */
-//����ʹ��qsort������ṹ������?
+//练习使用qsort排序结构体
 /*     int arr[10]={0,9,8,7,6,5,4,3,2,1};
     //int sz=sizeof(arr)/sizeof(arr[0]);
     struct stu s[]={{"zhangsna",25},{"lisi",21},{"wangwu",29},{"xiaoliu",31}};
@@ -679,7 +679,7 @@ int main()
 
 
 
-//ѧϰqsort ʹ�ÿ��������˼��?
+//学习qsort 使用快速排序的思想
 /*     int arr[10]={9,8,7,6,5,4,3,2,1,0};
     int sz=sizeof(arr)/sizeof(arr[0]);
     qsort(arr,sz,sizeof(arr[0]),cmp_int);
@@ -704,27 +704,27 @@ int main()
     
 
 
-//����ָ������?,�ص�����
-//�ͺ���ָ��������?ϰ
-//������    
+//函数指针数组, 回调函数
+//和函数指针练习
+//计算器
 /*      int x=0;
     int y=0;
     int ret=0;
     int input=0;
-//����ָ������
-//ת�Ʊ�
+//函数指针数组
+//转移表
     int (*arr[5])(int ,int )={0, Add,Sub,Mul,Div};
     do
     {
-        printf("������㷽ʽ\n");
+        printf("选择计算方式\n");
         scanf("%d",&input);
         if(input==0)
         {
-            printf("�˳�\n");
+            printf("退出\n");
         }
         else if(input>=1&&input <=4)
         {
-            printf("����Ҫ�������\n");
+            printf("输入要计算的值\n");
             scanf("%d %d",&x,&y);
             ret=arr[input](x,y);
             printf("%d\n",ret);
@@ -732,14 +732,14 @@ int main()
         }
         else
         {
-            printf("�������\n");
+            printf("选择错误\n");
         }
     } while (input);
-    
+
     /* int *arr[5]={arr1,arr2,arr3,arr4,arr5};
     int (*arr)[5]=&arr; */
 /*     int (*pf[5])(int,int)={0,Add,Sub,Mul,Div};
-//ָ�򡾺���ָ�����顿��ָ��
+//指向【函数指针数组】的指针
     int (*(*ppf)[5])(int,int)=&pf; 
 */
 
@@ -748,14 +748,14 @@ int main()
 
     /* do
     {
-        printf("ѡ����㷽ʽ\n�ӷ�1,����2,�˷�3,����4\n");
+        printf("选择计算方式\n加法1,减法2,乘法3,除法4\n");
         scanf("%d",&input);
         //ret=add(x,y);
         
         switch(input)
         {
         case 0:
-            printf("�˳���Ϸ\n");
+            printf("退出游戏\n");
             break;
         case 1:
             
@@ -771,7 +771,7 @@ int main()
             calc(Div);
             break;
         default:
-            printf("�������\n");
+            printf("选择错误\n");
             break;
         }
 
@@ -784,8 +784,8 @@ int main()
 
 
 
-//����ָ����?ϰ
-//����ָ�봫�ݣ��ں����е��ú���
+//函数指针练习
+//函数指针传递，在函数中调用函数
     
     /* //printf("%p ",&Add);
     //printf("%p ",Add);
@@ -800,11 +800,11 @@ int main()
     void (*signal(int,void(*)(int)))(int);
  */
     
-//����ָ���ʹ��?,���������ָ�����    
+//数组指针的使用, 二维数组传参
     /* int arr[]={1,2,3,4,5,6,7,8,9,10};
     int (*p)[10]=&arr;
     int arr[5]={0};
-    int (*p)[5]=&arr;//����ָ��
+    int (*p)[5]=&arr;//数组指针
     int sz=sizeof(arr)/sizeof(arr[0]);
     for(int i=0;i<sz;i++)
     {
@@ -815,7 +815,7 @@ int main()
 
 
 
-    //ָ������ģ����?����
+    //指针数组模拟二维数组
     /* int arr1[5]={1,2,3,4,5};
     int arr2[5]={2,3,4,5,6};
     int arr3[5]={3,4,5,6,7};
@@ -834,7 +834,7 @@ int main()
     } */
 
 
-    //���������������ϲ�һ����������
+    //两个有序数列合并成一个数组
     /* int n,m;
     scanf("%d %d",&n,&m);
     int narr[n];
@@ -878,17 +878,17 @@ int main()
         }
     } */
      
-/* //һ�����飬ǰ�벿���������������ż��?
-    //����
+/* //一个数组，前半部分是奇数后半部分是偶数
+    //输入
     int arr[10]={0};
     int sz=sizeof(arr)/sizeof(arr[0]);
     for(int i=0;i<10;i++)
     {
         scanf("%d",arr+i);
     }
-    //����
+    //排序
     move_odd_even(arr,sz);
-    //���?
+    //打印
     for(int i=0;i<10;i++)
     {
         printf("%d",*(arr+i));
@@ -934,7 +934,7 @@ int main()
 
 
 
-//����������С������
+//求两个数的最小公倍数
     /*int n, m;
     scanf("%d%d", &n, &m);
     int i = 1;
@@ -947,7 +947,7 @@ int main()
 
 
 
-//����������һƿ������ƿ�ǻ�һƿ
+//买饮料 两个瓶盖换一瓶
         //int n = 0;
         //int sum = 0;
         //int count = 0;
@@ -972,7 +972,7 @@ int main()
 
 
 
-    //��ӡ����
+    //打印菱形
         /*int i = 0;
         int j = 0;
         int k = 0;
@@ -1009,7 +1009,7 @@ int main()
 
 
 
-        //0-100000��ˮ�ɻ���
+        //0-100000的水仙花数
             //int count = 0;
             //int sum = 0;
             //for (int i = 0; i <= 100000; i++)
@@ -1046,7 +1046,7 @@ int main()
 
 
 
-        //�����ַ���
+        //求特殊字符串
             //int arr[6] = { 1,2,3,4,5,6 };
             //char ch[10001] = { 0 };
             ////while (scanf("%s", ch) != EOF) {};
