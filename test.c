@@ -265,7 +265,7 @@ char* my_strstr(const char* str1,const char* str2)
 
 }
 
-void* my_memcpy(const void* dest,const void* src,size_t num)
+void* my_memcpy(void* dest,const void* src,size_t num)
 {
     void* ret=dest;
     while(num--)
@@ -360,16 +360,30 @@ int main()
     }
     
     p=NULL; */
-    
-    int *p=(int*)calloc(10,sizeof(int));
+    int i=0;
+    int *p=(int*)malloc(40);
     if(p==NULL)
     {
         printf("error\n");
     }
-    for(int i=0;i<10;i++)
-    {
+    for( i=0;i<10;i++)
+        {
+        *(p+i)=i+1;
+        } 
+    int *ptr=(int*)realloc(p,80);
+        if(ptr!=NULL)
+        {
+        p=ptr;
+        }
+        for( i=10;i<20;i++)
+        {
+        *(p+i)=i+1;
+        } 
+        for( i=0;i<20;i++)
+        {
         printf("%d ",*(p+i));
-    }
+        }
+
 /*     for(int i=0;i<10;i++)
     {
         *(p+i)=i;
@@ -736,7 +750,7 @@ int main()
         }
     } while (input);
 
-    /* int *arr[5]={arr1,arr2,arr3,arr4,arr5};
+    int *arr[5]={arr1,arr2,arr3,arr4,arr5};
     int (*arr)[5]=&arr; */
 /*     int (*pf[5])(int,int)={0,Add,Sub,Mul,Div};
 //指向【函数指针数组】的指针
