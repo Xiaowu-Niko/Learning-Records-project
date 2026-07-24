@@ -43,14 +43,7 @@ struct stu
 // 核心思想：通过函数指针参数，将"做什么运算"的决定权交给调用者
 // ============================================================
 
-/**
- * @brief 通用的计算执行器
- * @param p 函数指针 - 指向具体的运算函数（Add/Sub/Mul/Div）
- *
- * 作用：负责统一的输入/输出流程，实际运算由传入的函数指针决定。
- * 好处：新增运算时只需写运算函数，无需修改 calc 本身（开闭原则）
- */
-void calc(int (*p)(int, int))
+/* void calc(int (*p)(int, int))
 {
     int x, y;
     int ret;
@@ -68,19 +61,15 @@ void calc(int (*p)(int, int))
     printf("结果: %d\n", ret);
 }
 
-/** 加法 */
+ 加法 
 int Add(int x, int y) { return x + y; }
 
-/** 减法 */
+ 减法 
 int Sub(int x, int y) { return x - y; }
 
-/** 乘法 */
+ 乘法 
 int Mul(int x, int y) { return x * y; }
 
-/**
- * @brief 除法（带除零保护）
- * @note 原版直接 x/y，除零会导致程序崩溃。优化后做了安全处理。
- */
 int Div(int x, int y)
 {
     if (y == 0) {
@@ -88,7 +77,9 @@ int Div(int x, int y)
         return 0;  // 返回 0 表示异常结果
     }
     return x / y;
-}
+} */
+
+
 //阶乘
 /* int jie(int x)
 {
@@ -348,7 +339,20 @@ int is_left_rotate(char* arr1,char* arr2)
 int main()
 {
 
+    FILE *pf =fopen("test.txt","r");
+    if(pf==NULL)
+    {
+        printf("error");
+    }
+    char ch=fgetc(pf);
+    printf("%c",ch);
+    fclose(pf);
+    pf=NULL;
 
+
+
+
+/* 
     int n=0;
     while(scanf("%d",&n)==1)
     {
@@ -364,7 +368,7 @@ int main()
             }
             printf("\n");
         }
-    }
+    } */
 
 
 //动态内存
@@ -379,8 +383,8 @@ int main()
         printf("%d\n",*(p+i));
     }
     
-    p=NULL; */
-    int i=0;
+     p=NULL;  */
+/*     int i=0;
     int *p=(int*)malloc(40);
     if(p==NULL)
     {
@@ -402,7 +406,7 @@ int main()
         for( i=0;i<20;i++)
         {
         printf("%d ",*(p+i));
-        }
+        }  */
 
 /*     for(int i=0;i<10;i++)
     {
@@ -412,7 +416,7 @@ int main()
     {
         printf("%d\n",*(p+i));
     } */
-    free(p);
+    //free(p);
 
 
 //通讯录
